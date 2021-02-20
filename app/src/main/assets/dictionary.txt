@@ -1,0 +1,26 @@
+Savoir:     Avoir appris quelque chose, et pouvoir le dire, le connaître, le répéter.
+
+Maison:     Bâtiment construit pour servir d'habitation aux personnes
+
+Langage:    Capacité, observée chez tous les hommes, d'exprimer leur pensée et de communiquer au moyen d'un système de signes vocaux et éventuellement graphiques (la langue).
+
+Philosophie: Ensemble de conceptions portant sur les principes des êtres et des choses, sur le rôle de l'homme dans l'univers, sur   Dieu, sur l'histoire et, de façon générale, sur tous les grands problèmes de la métaphysique.
+
+Internet:    Réseau télématique international, issu du réseau militaire américain Arpanet (conçu en 1969) et résultant de l'interconnexion d'ordinateurs du monde entier utilisant un protocole commun d'échanges de données (IP pour Internet 		     protocol). [Abréviation : Net.] (Tout utilisateur d'un micro-ordinateur muni d'un modem peut se connecter à Internet via 		     un fournisseur d'accès pour la consultation d'informations [sites Web], la messagerie électronique, des forums, des 		     blogs, le commerce électronique, les réseaux sociaux, etc.)
+
+Enfant:      Garçon ou fille avant l'adolescence.
+
+Stylo:	     Instrument pour écrire, dont le corps contient une réserve d'encre.
+
+Professeur:  Personne qui enseigne, qui dispense les connaissances relatives à une matière, à une discipline, en général dans le  		     cadre d'une activité.
+
+Etudiant:    Personne qui fait des études supérieures dans une université ou un établissement d'enseignement supérieur, une grande 		     école
+
+Texte:       Ensemble des termes, des phrases constituant un écrit, une œuvre écrite
+
+Programmation : La programmation, appelée aussi codage dans le domaine informatique , est l'ensemble des activités qui permettent l'écriture des programmes informatiques. C'est une étape importante du développement de logiciels (voire de matériel).
+
+
+Mainframe :  si présent et pourtant en voie de disparition, c’est l’ordinateur central à l’origine des infrastructures client-serveur, qui depuis plus de 30 ans pour les plus anciens en place sert l’informatique haute performance, disponibilité et sécurité.
+
+Système d’exploitation : En informatique, un système d'exploitation (souvent appelé OS — de l'anglais Operating System) est un ensemble de programmes qui dirige l'utilisation des ressources d'un ordinateur par des logiciels applicatifs

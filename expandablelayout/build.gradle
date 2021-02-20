@@ -1,0 +1,26 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'org.jetbrains.dokka'
+apply from: '../dependencies.gradle'
+
+android {
+    compileSdkVersion versions.compileSdk
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig false
+    }
+}
+
+dependencies {
+    implementation "androidx.appcompat:appcompat:$versions.androidxAppcompat"
+}
+
+apply plugin: "com.vanniktech.maven.publish"
+apply from: '../spotless.gradle'
