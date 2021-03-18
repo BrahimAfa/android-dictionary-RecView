@@ -16,42 +16,83 @@
 
 package com.skydoves.dictionaryrecyclerview
 
+
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import com.skydoves.dictionaryrecyclerview.databinding.ActivityCustomBinding
+import com.skydoves.dictionaryrecyclerview.fragments.DictionaryFragment
+import com.skydoves.dictionaryrecyclerview.fragments.FragmentDetails
+import com.skydoves.dictionaryrecyclerview.interfaces.IHandleClick
 import com.skydoves.dictionaryrecyclerview.model.Words
 import com.skydoves.dictionaryrecyclerview.utils.readFile
 import kotlinx.coroutines.*
 import kotlinx.coroutines.android.Main
 
-class CustomActivity : AppCompatActivity() {
+class CustomActivity : AppCompatActivity(), IHandleClick {
 
-  private val adapter = ParentAdapter()
   private val ctx = this;
-  private lateinit var  spinner : ProgressBar;
+  private lateinit var spinner: ProgressBar;
+  private lateinit var dictFragment : DictionaryFragment
+  var binding : ActivityCustomBinding? = null;
+  private var IS_LANDSCAP = false;
+  val TAG = "CustomActivity"
   override fun onCreate(savedInstanceState: Bundle?) {
+
     super.onCreate(savedInstanceState)
-    val binding = ActivityCustomBinding.inflate(layoutInflater)
-    setContentView(binding.root)
+    binding = ActivityCustomBinding.inflate(layoutInflater)
+
+    setContentView(binding?.root)
+
+    IS_LANDSCAP = binding!!.fragmentHolderDetails!=null;
+
     spinner = findViewById(R.id.progressBar1);
-
-    binding.recyclerView.adapter = adapter
+    if (savedInstanceState == null) {
     spinner.visibility = View.VISIBLE;
-    val def = GlobalScope.launch(Dispatchers.IO) {
-      delay(2000); // simulate a long running operation
-      val words = readFile(ctx,"dictionary.txt")
-      handleWords(words);
+    GlobalScope.launch(Dispatchers.IO) {
+      // delay(2000); // simulate a long running operation
+      val words = readFile(ctx, "dictionary1.txt")
+      GlobalScope.launch(Dispatchers.Main) {
+        spinner.visibility = View.GONE;
+        dictFragment = DictionaryFragment.newInstance(words);
+        dictFragment.handleClick = this@CustomActivity;
+        supportFragmentManager
+              // 3
+              .beginTransaction()
+              // 4
+              .add(R.id.fragmentHolder, dictFragment, "dictionaryWords")
+              // 5
+              .commit()
+        }
+      }
+    } else {
+      val fragmentWord = supportFragmentManager.findFragmentById(R.id.fragmentHolder)
+      if(fragmentWord is DictionaryFragment){
+        dictFragment =  fragmentWord
+        dictFragment.handleClick = this;
+      }
     }
-
-
   }
-  fun handleWords(words:ArrayList<Words>){
-    GlobalScope.launch(Dispatchers.Main) {
-      spinner.visibility = View.GONE;
-      adapter.addWords(words);
+
+  override fun WordClicked(word:Words) {
+    Log.e(TAG, "WordClicked: CLIIICKEF $IS_LANDSCAP")
+    if(IS_LANDSCAP){
+      supportFragmentManager
+              .beginTransaction()
+              .replace(R.id.fragmentHolderDetails, FragmentDetails.newInstance(word), "FragmentDetails")
+              .commit()
+    } else{
+      Log.e(TAG, "WordClicked: "+word.name, )
+      supportFragmentManager
+
+              .beginTransaction()
+              .addToBackStack("FragmentDetails")
+              .replace(R.id.fragmentHolder, FragmentDetails.newInstance(word), "FragmentDetails")
+              .commit()
     }
-  }
+    }
 
 }
+

@@ -4,19 +4,27 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:weightSum="2">
   <ProgressBar
       android:layout_gravity="center"
       android:visibility="gone"
       android:id="@+id/progressBar1"
       style="?android:attr/progressBarStyleLarge"
       android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_centerHorizontal="true" />
+      android:layout_height="wrap_content" />
 <FrameLayout
-    android:background="@color/md_orange_200"
     android:id="@+id/fragmentHolder"
-  android:layout_margin="10dp"
+    android:layout_margin="10dp"
+    android:layout_weight="1"
     android:layout_width="match_parent"
+  android:background="@color/md_yellow_200"
     android:layout_height="match_parent"/>
+  <FrameLayout
+      android:id="@+id/fragmentHolderDetails"
+      android:layout_weight="1"
+      android:layout_margin="10dp"
+      android:background="@color/colorPrimary"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
 </LinearLayout>

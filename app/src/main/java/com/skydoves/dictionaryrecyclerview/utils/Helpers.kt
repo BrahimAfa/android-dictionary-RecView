@@ -5,8 +5,8 @@ import com.skydoves.dictionaryrecyclerview.model.Words
 import java.io.IOException
 
 @Throws(IOException::class)
-
 fun readFile(context: Context, fileName: String): ArrayList<Words> {
+
         val dict = arrayListOf<Words>()
         context.assets.open(fileName).use {file->
             file.reader(Charsets.UTF_8).forEachLine {
@@ -15,7 +15,8 @@ fun readFile(context: Context, fileName: String): ArrayList<Words> {
                 dict.add(Words(splitedLine[0].trim(),splitedLine[1].trim()));
             }
         }
-    return dict;
+        return dict;
+
 }
 
 

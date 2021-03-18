@@ -18,48 +18,38 @@ package com.skydoves.dictionaryrecyclerview
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.dictionaryrecyclerview.databinding.ItemSectionBinding
+import com.skydoves.dictionaryrecyclerview.interfaces.IHandleClick
 import com.skydoves.dictionaryrecyclerview.model.Words
 
-class ParentAdapter :
+class ParentAdapter (private val words: ArrayList<Words>, private val handleClick: IHandleClick?,):
   RecyclerView.Adapter<ParentAdapter.ParentViewHolder>(){
 
-  private val words: ArrayList<Words> = arrayListOf()
-
-  fun addWord(word: Words) {
-    words.add(word)
-    notifyItemChanged(words.lastIndex)
-  }
   fun addWords(words: ArrayList<Words>) {
-    this.words.addAll(words)
+    words.addAll(words)
     notifyDataSetChanged()
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParentViewHolder {
-    val binding = ItemSectionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-    return ParentViewHolder(binding).apply {
-      with(binding.root) {
-        setOnClickListener { toggleLayout() }
-      }
-    }
+   // val binding = ItemSectionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    val view = LayoutInflater.from(parent.context).inflate(R.layout.item_section,parent,false);
+    return ParentViewHolder(view)
   }
 
   override fun onBindViewHolder(holder: ParentViewHolder, position: Int) {
     val word = words[position]
-    with(holder.binding.expandableLayout) {
-      parentLayoutResource = R.layout.item_section_parent
-      secondLayoutResource = R.layout.layout_second2
-      duration = 200L
-      parentLayout.findViewById<TextView>(R.id.title).text = word.name
-      secondLayout.findViewById<TextView>(R.id.myText).text = word.description
+    holder.view.findViewById<TextView>(R.id.txtWord).text = word.name
+    holder.itemView.findViewById<TextView>(R.id.txtWord).setOnClickListener {
+      handleClick?.WordClicked(word);
     }
   }
   override fun getItemCount() = words.size
 
-  class ParentViewHolder(val binding: ItemSectionBinding) :
-    RecyclerView.ViewHolder(binding.root)
+  class ParentViewHolder(val view: View) :
+    RecyclerView.ViewHolder(view)
 }

@@ -6,4 +6,7 @@
     <item name="colorAccent">@color/colorAccent</item>
     <item name="colorControlHighlight">@color/white_56</item>
   </style>
+  <style name="TextViewStyle">
+      
+  </style>
 </resources>
